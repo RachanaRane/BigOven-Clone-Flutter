@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "447685655831",
+    "project_id": "bigoven-flutter",
+    "storage_bucket": "bigoven-flutter.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:447685655831:android:479a2ced2e7f8958e80b52",
+        "android_client_info": {
+          "package_name": "com.example.my_first_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDzg9RloAN1ZNeY6AQXoQZzjrK7uQF7NOw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
