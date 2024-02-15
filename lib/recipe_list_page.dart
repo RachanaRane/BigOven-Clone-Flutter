@@ -90,6 +90,9 @@ class RecipeListPage extends StatelessWidget {
         },
       ),
       bottomNavigationBar: BottomNavigationBar(
+        backgroundColor: Colors.red,
+        selectedItemColor: Colors.black,
+        unselectedItemColor: Colors.black,
         items: [
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
@@ -114,7 +117,7 @@ class RecipeListPage extends StatelessWidget {
             Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => HomePage(),
+                builder: (context) => VideoPlayerApp(),
               ),
             );
           }
