@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_first_app/recipe_form.dart';
 
 class Recipelib extends StatelessWidget {
   @override
@@ -51,8 +52,10 @@ class Recipelib extends StatelessWidget {
             SizedBox(height: 16),
             ElevatedButton(
               onPressed: () {
-                // Navigate to the page to add a new recipe
-                // You need to implement this page separately
+                 Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => AddRecipeForm()),
+                );
               },
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,

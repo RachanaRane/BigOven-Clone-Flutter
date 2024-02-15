@@ -65,7 +65,7 @@ class _LoginPageState extends State<LoginPage> {
                   // Navigate to home page after successful login
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => VideoPlayerApp()),
+                    MaterialPageRoute(builder: (context) => Home_Page()),
                   );
                 } catch (e) {
                   // Show an error message if sign-in fails
