@@ -36,57 +36,82 @@ class _LoginPageState extends State<LoginPage> {
       appBar: AppBar(
         title: Text('Login'),
       ),
-      body: Padding(
-        padding: EdgeInsets.all(16.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            TextField(
-              controller: _emailController,
-              decoration: InputDecoration(labelText: 'Email'),
+      body: Stack(
+        children: [
+          // Background image
+          Positioned.fill(
+            child: Image.network(
+              'https://e0.pxfuel.com/wallpapers/281/550/desktop-wallpaper-advertising-background-stirfried-synthetic-creative-catering-stirfrystir-fried-creative-synthe-food-poster-food-poster-design-food-background-thumbnail.jpg', // Replace with your background image path
+              fit: BoxFit.cover,
             ),
-            SizedBox(height: 8.0),
-            TextField(
-              controller: _passwordController,
-              decoration: InputDecoration(labelText: 'Password'),
-              obscureText: true,
+          ),
+          // Small image overlay
+          Positioned(
+            top: 50.0,
+            left: 0,
+            right: 0,
+            child: Center(
+              child: Image.network(
+                'https://www.thespruceeats.com/thmb/ZCFiPKg38uekggmH0O29KRuyNeM=/fit-in/1500x750/filters:format(png):fill(white):max_bytes(150000):strip_icc()/Big_Oven-83f3ebe6d1ef4a2894c8b48e23cc0dbf.jpg', // Replace with your small image path
+                width: 200,
+                height: 200,
+              ),
             ),
-            SizedBox(height: 16.0),
-            ElevatedButton(
-              onPressed: () async {
-                try {
-                  // Sign in the user with email and password
-                  await _auth.signInWithEmailAndPassword(
-                    email: _emailController.text,
-                    password: _passwordController.text,
-                  );
+          ),
+          // Login form
+          Padding(
+            padding: EdgeInsets.all(16.0),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                TextField(
+                  controller: _emailController,
+                  decoration: InputDecoration(labelText: 'Email'),
+                ),
+                SizedBox(height: 8.0),
+                TextField(
+                  controller: _passwordController,
+                  decoration: InputDecoration(labelText: 'Password'),
+                  obscureText: true,
+                ),
+                SizedBox(height: 16.0),
+                ElevatedButton(
+                  onPressed: () async {
+                    try {
+                      // Sign in the user with email and password
+                      await _auth.signInWithEmailAndPassword(
+                        email: _emailController.text,
+                        password: _passwordController.text,
+                      );
 
-                  // Navigate to home page after successful login
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => Home_Page()),
-                  );
-                } catch (e) {
-                  // Show an error message if sign-in fails
-                  print('Login failed: $e');
-                }
-              },
-              child: Text('Login'),
+                      // Navigate to home page after successful login
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => Home_Page()),
+                      );
+                    } catch (e) {
+                      // Show an error message if sign-in fails
+                      print('Login failed: $e');
+                    }
+                  },
+                  child: Text('Login'),
+                ),
+                SizedBox(height: 16.0),
+                ElevatedButton(
+                  onPressed: () {
+                    // Navigate to the create account page
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => SignUpPage()),
+                    );
+                  },
+                  child: Text('Create Account'),
+                ),
+              ],
             ),
-            SizedBox(height: 16.0),
-            ElevatedButton(
-              onPressed: () {
-                // Navigate to the create account page
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => SignUpPage()),
-                );
-              },
-              child: Text('Create Account'),
-            ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

@@ -11,6 +11,7 @@ class _AddRecipeFormState extends State<AddRecipeForm> {
   late TextEditingController _nameController;
   late TextEditingController _imageUrlController;
   late TextEditingController _blogContentController;
+  late TextEditingController _ingredientsController;
 
   @override
   void initState() {
@@ -18,6 +19,7 @@ class _AddRecipeFormState extends State<AddRecipeForm> {
     _nameController = TextEditingController();
     _imageUrlController = TextEditingController();
     _blogContentController = TextEditingController();
+    _ingredientsController=TextEditingController();
   }
 
   @override
@@ -25,6 +27,7 @@ class _AddRecipeFormState extends State<AddRecipeForm> {
     _nameController.dispose();
     _imageUrlController.dispose();
     _blogContentController.dispose();
+    _ingredientsController.dispose();
     super.dispose();
   }
 
@@ -32,9 +35,10 @@ class _AddRecipeFormState extends State<AddRecipeForm> {
     if (_formKey.currentState!.validate()) {
       try {
         await FirebaseFirestore.instance.collection('recipes').add({
-          'name': _nameController.text,
-          'imageUrl': _imageUrlController.text,
-          'blogContent': _blogContentController.text,
+          'ingredients':_ingredientsController.text,
+          'title': _nameController.text,
+          'url': _imageUrlController.text,
+          'recipe': _blogContentController.text,
         });
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(content: Text('Recipe added successfully')),
@@ -83,10 +87,21 @@ class _AddRecipeFormState extends State<AddRecipeForm> {
                   return null;
                 },
               ),
+              TextFormField(
+                controller: _ingredientsController,
+                decoration: InputDecoration(labelText: 'Ingredients'),
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Please enter the Ingredients';
+                  }
+                  return null;
+                },
+              ),
+              SizedBox(height: 16.0),
               SizedBox(height: 16.0),
               TextFormField(
                 controller: _blogContentController,
-                decoration: InputDecoration(labelText: 'Blog Content'),
+                decoration: InputDecoration(labelText: 'Recipe'),
                 validator: (value) {
                   if (value == null || value.isEmpty) {
                     return 'Please enter the blog content';

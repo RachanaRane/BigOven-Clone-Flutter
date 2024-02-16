@@ -1,6 +1,7 @@
 import 'package:my_first_app/home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:my_first_app/recripe_library.dart';
+import 'package:my_first_app/video_player.dart';
 import 'profile_page.dart';
 
 class Recipe {
@@ -110,6 +111,10 @@ class RecipeListPage extends StatelessWidget {
             icon: Icon(Icons.add),
             label: 'My Recipes',
           ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.movie),
+            label: 'Videos',
+          ),
         ],
         currentIndex: 1,
         onTap: (index) {
@@ -134,6 +139,13 @@ class RecipeListPage extends StatelessWidget {
               context,
               MaterialPageRoute(
                 builder: (context) => Recipelib(),
+              ),
+            );
+          }else if (index == 4) {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => VideoPlayerApp(),
               ),
             );
           }

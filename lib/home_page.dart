@@ -4,6 +4,7 @@ import 'package:my_first_app/profile_page.dart';
 import 'package:my_first_app/recipe_list_page.dart';
 import 'package:my_first_app/recipe_page.dart';
 import 'package:my_first_app/recripe_library.dart';
+import 'package:my_first_app/video_player.dart';
 
 void main() => runApp(Home_Page());
 
@@ -34,24 +35,30 @@ class HomePage extends StatelessWidget {
           if (snapshot.hasError) {
             return Center(child: Text('Error: ${snapshot.error}'));
           }
-          var document = snapshot.data!.docs.first;
-          var data = document.data() as Map<String, dynamic>;
-          var imageUrl = data['url'] ?? '';
-          return GestureDetector(
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => RecipePage(imageUrl: imageUrl, title: data['title']),
+          return ListView.builder(
+            itemCount: snapshot.data!.docs.length,
+            itemBuilder: (context, index) {
+              var document = snapshot.data!.docs[index];
+              var data = document.data() as Map<String, dynamic>;
+              var imageUrl = data['url'] ?? '';
+              var title = data['title'] ?? '';
+              return GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => RecipePage(imageUrl: imageUrl, title: title),
+                    ),
+                  );
+                },
+                child: Card(
+                  child: Image.network(
+                    imageUrl,
+                    fit: BoxFit.cover,
+                  ),
                 ),
               );
             },
-            
-              child: Image.network(
-                imageUrl,
-                fit: BoxFit.cover,
-              ),
-            
           );
         },
       ),
@@ -76,6 +83,10 @@ class HomePage extends StatelessWidget {
             icon: Icon(Icons.add),
             label: 'My Recipes',
           ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.movie),
+            label: 'Videos',
+          ),
         ],
         currentIndex: 0,
         onTap: (index) {
@@ -98,6 +109,13 @@ class HomePage extends StatelessWidget {
               context,
               MaterialPageRoute(
                 builder: (context) => Recipelib(),
+              ),
+            );
+          }else if (index == 4) {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => VideoPlayerApp(),
               ),
             );
           }

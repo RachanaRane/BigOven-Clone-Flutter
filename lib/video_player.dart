@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:my_first_app/home_page.dart';
 import 'package:my_first_app/profile_page.dart';
 import 'package:my_first_app/recipe_list_page.dart';
 import 'package:my_first_app/recripe_library.dart';
 import 'package:video_player/video_player.dart';
 import 'dart:async';
-
-void main() => runApp(VideoPlayerApp());
 
 class VideoPlayerApp extends StatelessWidget {
   const VideoPlayerApp({super.key});
@@ -127,10 +126,22 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
             icon: Icon(Icons.add),
             label: 'My Recipes',
           ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.movie),
+            label: 'Videos',
+          ),
         ],
-        currentIndex: 0,
+        currentIndex: 4,
         onTap: (index) {
-           if (index == 1) {
+          if (index == 0) {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => HomePage(),
+              ),
+            );
+          }
+           else if (index == 1) {
           Navigator.push(
               context,
               MaterialPageRoute(
