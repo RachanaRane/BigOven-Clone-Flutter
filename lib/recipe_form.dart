@@ -8,7 +8,7 @@ class AddRecipeForm extends StatefulWidget {
 
 class _AddRecipeFormState extends State<AddRecipeForm> {
   final _formKey = GlobalKey<FormState>();
-  late TextEditingController _nameController;
+  late TextEditingController _nameController;        
   late TextEditingController _imageUrlController;
   late TextEditingController _blogContentController;
   late TextEditingController _ingredientsController;

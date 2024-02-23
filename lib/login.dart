@@ -68,12 +68,16 @@ class _LoginPageState extends State<LoginPage> {
                 TextField(
                   controller: _emailController,
                   decoration: InputDecoration(labelText: 'Email'),
+                  style: TextStyle(color: Colors.white), // Set text color to white
+                   
                 ),
                 SizedBox(height: 8.0),
                 TextField(
                   controller: _passwordController,
                   decoration: InputDecoration(labelText: 'Password'),
                   obscureText: true,
+                  style: TextStyle(color: Colors.white), // Set text color to white
+                   
                 ),
                 SizedBox(height: 16.0),
                 ElevatedButton(
